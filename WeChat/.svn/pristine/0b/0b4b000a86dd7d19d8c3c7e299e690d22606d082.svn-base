@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通讯录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+    function collectionOrnot(){
+    	var coll = $("#collection div").html();
+        if(coll=='收藏'){
+        	collectContact("1");
+        }else{
+        	collectContact("0");
+        } 
+    }
+   	var userId = GetQueryString('userId');
+    $(function(){
+    	var id = GetQueryString('id');
+    	var url = contextUrl+"/setting/queryContactInfoById.do"
+	    $.ajax({  
+	        type : "post",  
+	        async:false, 
+	        data:{id:id,userId:userId}, 
+	        url : url,  
+	        dataType : "json",//数据类型为jsonp  
+	       // jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数  
+	        success : function(data){  
+	        	if(data){
+	        		var isCollect = data['CONTACTID'];
+	        		if(isCollect){
+	        			$("#collection").attr("class","commonBoxFixed dbcenter02 hasCollection");
+	            		$("#collection div").html("已收藏");
+	        		}
+	        		$("#cid").val(data["ID"]);
+	        		$("#todial").attr("href","tel:"+data["CONTACT_MOBILE"]);
+	        		$("#tosms").attr("href","sms:"+data["CONTACT_MOBILE"]);
+	        		$("#name").html(data["CONTACTOR"]);
+	        		$("#position").html(data["POSITION"]);
+	        		$("#telephone").html(data["CONTACT_MOBILE"]);
+	        		$("#phone").html(data["CONTACT_PHONE"]);
+	        		$("#tophone").attr("href","tel:"+data["CONTACT_PHONE"]);
+	        		$("#tomail").attr("href","mailto:"+data["EMAIL"]);
+	        		$("#email").html(data["EMAIL"]);
+	        		$("#desc").html(data["FUNC_DESC"]);
+	        	}
+	        }
+	     })
+    });
+    
+    function collectContact(isCollect){
+    	var contactId = $("#cid").val();
+    	var url = contextUrl+"/setting/collectContactor.do"
+	    $.ajax({  
+	        type : "post",  
+	        async:false, 
+	        data:{isCollect:isCollect,contactId:contactId,userId:userId}, 
+	        url : url,  
+	        dataType : "json",//数据类型为jsonp  
+	       // jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数  
+	        success : function(data){  
+	        	if(data){
+	        		if(data.result==0){
+	        			if(isCollect=="1"){
+		        			$("#collection").attr("class","commonBoxFixed dbcenter02 hasCollection");
+	            			$("#collection div").html("已收藏");
+	        			}else{
+	        			 	$("#collection").attr("class","commonBoxFixed dbcenter02 collection");
+           					$("#collection div").html("收藏");
+	        			}
+	        		}else{
+	        			alert(data.msg);
+	        		}
+	        	}
+	        }
+	     })
+    }
+    
+</script>
+</head>
+<body>
+<session >
+	<input type="hidden" id="cid" />
+    <div class="f-pl15 f-pt10 f-pb10 f-pr15">
+        <div class="commonBox border-bottom f-pb10">
+            <div class="commonBoxFixed headImg"><img src="images/headImg.jpg"></div>
+            <div class="commonBoxAuto dbcenter02 f-ml10"><div><h1 class="f-fs16" id="name">Jessie</h1><div class="f-mt10 f-fs10 fc-A1A1A1" id="position">经销商业务支持</div></div></div>
+            <div class="commonBoxFixed dbcenter02 collection" id="collection" onclick="collectionOrnot()"><div>收藏</div></div>
+        </div>
+        <div class="commonBox f-pb10 f-pt10 border-bottom">
+            <div class="commonBoxFixed dbcenter02 phone fc-A1A1A1">手机</div>
+            <div class="commonBoxAuto dbcenter02 fc-29AAEB" id="telephone">131-1555-67945</div>
+            <a id="todial" href=""><div class="commonBoxFixed phoneImg"><div></div></div></a>
+        </div>
+        <div class="commonBox f-pb10 f-pt10 border-bottom">
+            <div class="commonBoxFixed dbcenter02 phone fc-A1A1A1">电话</div>
+            <div class="commonBoxAuto dbcenter02 fc-29AAEB" id="phone">131-1555-67945</div>
+            <a id="tophone" href=""><div class="commonBoxFixed phoneImg"><div></div></div></a>
+        </div>
+        <div class="commonBox f-pb10 f-pt10 border-bottom">
+            <div class="commonBoxFixed dbcenter02 phone fc-A1A1A1">邮箱</div>
+            <div class="commonBoxAuto dbcenter02" id="email">Jessia@biostime.com</div>
+            <a id="tomail" href=""><div class="commonBoxFixed email"><div></div></div></a>
+        </div>
+        <div class="f-pt20 f-tc"><a id="tosms" href=""><button class="sendMessage">发送信息</button></a></div>
+        <div class="fc-A1A1A1 f-pt20 f-lh15">职能说明：</div>
+        <ul class="Explain" id="desc">
+            <li>经销商业务支持</li>
+            <li>经销商退货、会员订单、扫码、库存盘点等于经销商相关的业务支持</li>
+            <li>产品供货、产品变更管理及产品额度分配</li>
+            <li>与经销商相关的销售政策与制度的发布</li>
+            <li>经销商平台的需求更新与完善</li>
+        </ul>
+    </div>
+</session>
+</body>
+
+</html>

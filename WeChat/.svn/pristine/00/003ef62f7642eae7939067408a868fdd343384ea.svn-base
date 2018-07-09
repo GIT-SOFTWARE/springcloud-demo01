@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>通知公告</title>
+
+<link href="css/reset.css" type="text/css" rel="stylesheet">
+<link href="css/scrollbar.css" type="text/css" rel="stylesheet">
+<link href="css/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+ 	$("#notice li:first").click();
+ 		//initPage(1);
+ 		//loadMore(1, 10, 1);
+		 /*  var url = contextUrl+"/setting/queryFirstPageInfo.do"
+		   $.ajax({  
+		        type : "post",  
+		        async:false,  
+		        url : url,  
+		        dataType : "json",//数据类型为jsonp  
+		        success : function(data){  
+		        	for(var i=1; i<8; i++){
+		        		$("#notice"+i).html("");
+			        	var notice = "";
+		        		var d = eval("data.n"+i);
+		        		if(d){
+			        		for(var j=0; j<d.length; j++){
+				        		var isNew = d[j]['ISNEW'];
+				        		notice += 
+				        		"<a class='commonBox f-pt10 f-pb10 arrow border-bottom' onclick='openNewPage("+d[j]['ID']+",&#39;"+d[j]['NOTICETYPE']+"&#39;)'>"+
+								"      <div class='commonBoxFixed news'>";
+								if(parseInt(isNew)<=80){
+									notice += "<span class='newsFlag'>NEW</span>";
+								}
+								notice += 
+								" </div>     <div class='commonBoxAuto f-lh15 f-pr10'>"+
+								"                <div><span class='time f-mr20'>"+d[j]['CREATETIME']+"</span><span class='department'>"+d[j]['DEPARTMENT']+"</span></div>"+
+								"                <div class='title'><h3 class='f-fs14 ellisis'>"+d[j]['TITLE']+"</h3></div>"+
+								"       </div>"+
+								"</a>";
+			        		}
+			        		$("#notice"+i).html(notice);
+		        		}
+		        	}
+		        },  
+		        error:function(){  
+		            alert('系统异常，请联系管理员！');  
+		        }  
+		    }); */
+		}); 
+</script>
+
+
+
+</head>
+<body>
+	<div id="huadonglunbo" class="swipe">
+		<div class='swipe-wrap'>
+			<div><img src="images/1.jpg" /></div>
+			<div><img src="images/2.jpg" /></div>
+			<div><img src="images/3.jpg" /></div>
+		</div>
+		<div class="xiaoyuandian">
+			<ul>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+    <div class="notice_wrap">
+        <div class="ul_wrap">
+            <ul class="notice" id="notice">
+                <li class="hover" title="2" ><a title="1">通知公告</a></li>
+                <li title="2" ><a title="2">产品介绍</a></li>
+                <li title="2"><a title="3">发货信息</a></li>
+                <li title="2"><a title="4">销售政策</a></li>
+                <li title="2"><a title="6">相关证照</a></li>
+                <li title="2"><a title="7">财务公告</a></li>
+            </ul>
+        </div>
+        <div class="rightArrow" ontouchstart="rightStart()" ontouchend="rightEnd()"></div>
+    </div>
+<div id="loadpage1">
+	
+</div>
+<script type="text/javascript" src="js/swipe1.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+</body>
+</html>

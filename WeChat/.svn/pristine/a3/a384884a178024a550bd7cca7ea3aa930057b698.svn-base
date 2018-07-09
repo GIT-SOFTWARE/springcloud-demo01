@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>公告信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+      <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+      <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+    $(function(){
+    	var id = GetQueryString('id');
+    	var type = GetQueryString('type');
+    	var myTitle=new Array("通知公告","产品简介","发货信息","销售政策","","相关证照","财务公告");
+    	$(document).attr("title",myTitle[type-1]);
+    	if(type=="1"){
+    		$("#n1").show();
+    	}else{
+    		$("#n1").hide();
+    	}
+    	var url = contextUrl+"/setting/queryNoticeInfoById.do"
+	    $.ajax({  
+	        type : "post",  
+	        async:false, 
+	        data:{id:id}, 
+	        url : url,  
+	        dataType : "json",//数据类型为jsonp  
+	       // dataType : "jsonp",//数据类型为jsonp  
+	     //  jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数  
+	        success : function(data){  
+	        	if(typeof data =='string'){
+	        		alert(data);
+	        	}else if(typeof data =='object'){
+	        		$("#title").html(data.title);
+	        		$("#dept").html("发布部门："+data.department);
+	        		$("#annouceTime").html("发布部门："+data.createBy);
+	        		$("#summary").html(data.summary);
+	        		$("#content").html(data.content);
+	        	}
+	        }
+	     })
+    	
+    
+    })
+    
+    </script>
+</head>
+<body>
+<session>
+	<h1 class="f-tc f-fs16 f-pt10"><span id="title">公告</span></h1>
+	<div id="dept" style="padding-left: 20px;margin-top: 20px"></div>
+	<div id="annouceTime" style="padding-left: 20px"></div>
+	<div id="n1">
+	<div style="color:red;margin-top: 20px">概要：</div>
+	<div class="f-pl10 f-pb10 f-pt10 f-pr10" id="summary"></div>
+	<div style="color:red">详情：</div>
+	</div>
+    <div class="f-pl10 f-pb10 f-pt10 f-pr10" id="content">
+        关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知关于合生元奶粉标签改版通知
+    </div>
+</session>
+</body>
+</html>

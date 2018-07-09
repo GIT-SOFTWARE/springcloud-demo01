@@ -1,0 +1,18 @@
+body{font-family:"Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial,\5b8b\4f53; font-size:14px;font-size:1.4rem;}
+/****票据扫码 菜单页****/
+.nightTable{width: 100%; background-color: #fff;}
+.nightTable tr{ border: solid 1px #eee; }
+.nightTable tr td{ border-right: solid 1px #eee; text-align: center; width: 33%;}
+.nightTable tr td img{ width: 30%; height:30%; margin: 20% auto;  }
+.nightTable tr td .textTitle{ margin-bottom: 10%; color:#333; }
+/****票据扫码页面****/
+.fc_0072ce{color:#0072ce;}
+.W10{width:10% !important;}
+.W20{width:20% !important;}
+.W40{width:40% !important;}
+.f-pfx{width:100%; position: fixed; bottom:0; border-top:1px solid #ddd; padding:10px 0;}
+
+.scanBtn{width:2.91rem; height:2.7rem; background: url("../images/icon_1.png") no-repeat center; background-size: 100% 100%;}
+.cBtn{width: 40%; color:#666; background: url("../images/btn_1.png") no-repeat center; background-size: 100% 100%; padding: 1rem 0;}
+.sBtn{width: 40%; color:#0072ce; background: url("../images/btn_2.png") no-repeat center; background-size: 100% 100%; padding: 1rem 0;}
+

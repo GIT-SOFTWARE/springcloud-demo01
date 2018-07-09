@@ -1,0 +1,60 @@
+/*通用盒子模型*/
+.commonBox{display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: flex;}
+.commonBoxFixed{width: auto; display: block; }
+.commonBoxAuto{-webkit-box-flex: 1; -moz-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1;}
+.flexBox{display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: flex;}
+.flexBoxFixed{width: auto; display: block; }
+.flexBoxAuto{-webkit-box-flex: 1; -moz-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1;}
+.dbcenter{text-align: center;-webkit-box-align: center; -webkit-box-pack: center;  display: -webkit-box;}/*水平居中垂直居中*/
+.dbcenter01{-webkit-box-align: center;   display: -webkit-box;}/*垂直居中(-webkit-box-pack: center;水平居中)*/
+.dbcenter02{  display: -webkit-box;display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-align: center;  -moz-box-align: center;  -ms-flex-align: center; -webkit-align-items: center; align-items: center;}/*实现文本垂直居中*/
+*{margin:0;padding: 0;}
+.swipe {overflow: hidden;visibility: hidden; position: relative; width: 100%;}
+.swipe img{width: 100%;}
+.swipe-wrap { overflow: hidden;position: relative;}
+.swipe-wrap > div {float:left;width:100%;position: relative;}
+.xiaoyuandian { width: 100%; height: 30px; position: absolute; bottom: 10px; text-align: center; margin: 0 auto;}
+.xiaoyuandian ul{list-style: none; overflow: hidden;}
+.xiaoyuandian ul li{display: inline-block;width: 16px;height: 16px;background:orange;margin-right: 10px;border-radius:8px;}
+.xiaoyuandian ul li.cur{background:red;}
+img{ border: none; vertical-align:middle;}/*清除图片边框并且让图片居中显示*/
+.lunbo{ overflow: hidden; visibility: hidden; position: relative; width: 100%;}
+.lunboContent {overflow: hidden; position: relative;}
+.lunbo img{ width: 100%;}
+.lunboContent > div { float:left; width:100%; position: relative; }
+.notice_wrap{ overflow: hidden;border-bottom: 1px solid #bfbfbf;overflow-x: auto;position: relative; padding: 5px;}
+.notice{ overflow: hidden;}
+.ul_wrap{ width: 85%; overflow-x: auto; float: left; background: url(../images/bianxian.png) right center no-repeat;   background-size: 1px 28px; height: 30px;}
+.notice li{display: inline-block; text-align: center; line-height: 29px; list-style: none;  margin:0px; margin-left: -0.35em; padding: 0 10px; min-width: 40px; font-size: 1.4rem;}
+.notice .hover a{border-bottom: 1px solid #2AAD2A; line-height: 25px;display: inline-block; color: #2AAD2A;}
+/*.notice li:nth-child(2){background:#666666; color: #fff;}*/
+/*.notice li:nth-child(3){background:#9900FF; color: #fff;}*/
+/*.notice li:nth-child(4){background:#9900CC; color: #fff;}*/
+.rightArrow{background: url(../images/arrowSmall.png) center center no-repeat #fff;float: right; height: 30px; background-size: 10px 15px;width:15% !important; box-sizing: border-box;}
+.news{ width: 60px;}
+.newsFlag{background: url(../images/flag.png) center center no-repeat; background-size: 45px 15px;width: 45px;display: inline-block; padding: 1px 0 0 5px;  color: #fff;float: right; margin-top: 16px;margin-right:5px;}
+.time{ font-size: 1rem; color: #A9A9A9;}
+.department{ color: #9F9F9F;font-size: 1rem;}
+.arrow{ background: url(../images/arrowSmall.png) center right no-repeat; background-size: 10px 15px; background-position: 97%;}
+.down{ background: url(../images/down.png) center right no-repeat; background-size: 15px 15px; background-position: 97%;}
+.ellisis{ overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+.search{ background: #EBEBF2; padding: 10px; text-align: center; overflow: hidden;}
+.search div{ width: 80%; margin: 0 auto;  border-radius: 3px; overflow: hidden;}
+.search input{ padding: 10px; background: #fff;border: none;box-sizing: border-box;height: 36px; border-radius: 0;}
+.searchBtn{ width:12%;background: url(../images/magnifyingGlass.png) center center no-repeat #fff; height: 36px; background-size: 20px 20px;}
+.star{ background: url(../images/littleStar1.png) center center no-repeat; float: left; height: 15px; width: 15px; background-size: 15px; margin:3px 0 0 5px;}
+.headImg{ width: 30%; border-radius: 5px;}
+.collection,.hasCollection{width: 55px;}
+.collection div{ width: 55px; height: 20px; text-align: center;  line-height: 20px;  border: 1px solid #FFBC00; color: #FFBC00; border-radius: 3px; background: url(../images/littleStar1.png) 5px center no-repeat; padding-left: 18px; background-size: 15px;}
+.hasCollection div{background:#FFBC00; padding: 0px; color: #fff;  width: 55px; height: 20px; text-align: center;  line-height: 20px;  border: 1px solid #FFBC00;border-radius: 3px;}
+.phone{ width: 20%;}
+.phoneImg,.email{ width: 40px;}
+.phoneImg div{ background: url(../images/phone.png) center center no-repeat;width: 40px; height: 25px; background-size: 25px 25px;}
+.email div{background: url(../images/email.png) center center no-repeat;width: 40px; height: 25px; background-size: 25px 20px;}
+.sendMessage{ width: 60%; padding: 15px 0; color: #fff; background: #079DE8; font-size: 1.6rem;}
+.Explain{ line-height: 1.5rem; color: #A1A1A1; margin-left: 20px;}
+.Explain li{ list-style: disc;}
+/*.showBox div:nth-last-child(1){border-bottom: none;}*/
+.list{ overflow: hidden; padding: 10px 10px 10px 20px; border-bottom: 1px solid #ccc;}
+.showBoxWrap{ padding: 0px 0 5px; line-height: 2rem;}
+.title{word-break:break-all; width:200px; overflow:auto;}

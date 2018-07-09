@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通讯录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   //获取cookie信息
+		   var username = getCookie("username");
+		   if(username!='undefined' && username!='' && username!=undefined){
+		   		getlist(username);
+		   }else{
+			   var code = GetQueryString("code");
+			   if(code){
+			   		var url = contextUrl+"/setting/getWxUserIdContact.do";
+					$.ajax({  
+				        type : "post",  
+				        async:false, 
+				        data:{code:code}, 
+				        url : url,  
+				        dataType : "json",
+				        success : function(data){  
+				        	if(data){
+				        		getlist(data.UserId);
+				        		setCookie("username",data.UserId,7);
+				        	}else{
+				        		getlist("-1");
+				        	}
+				        },  
+				        error:function(){  
+				            getlist("-1");  
+				        }  
+				    });
+			   }else{
+			   		getlist("-1");
+			   }
+		   }
+		});
+		
+		
+	function getlist(userId){
+		var url = contextUrl+"/setting/queryContactDeptList.do";
+		$.ajax({  
+	        type : "post",  
+	        async:false,  
+	        url : url,  
+	        data: {userId:userId},
+	        dataType : "json",//数据类型为jsonp  
+	        success : function(data){  
+	           var html = "";
+	           $(".contact_ct").html("");
+	           var maplenght = Object.keys(data).length;
+	           if(maplenght==0){
+	           	$(".contact_ct").html("暂无信息");
+	           }else{
+		           for(var key in data){
+		           		 if(key=='常用联系人'){
+		           			html += "<div class='showBoxWrap'> "+
+									"	<div class='list down' onclick='showOrHide(this)'> "+
+									"		 <span class='f-fl' >"+key+"</span><span class='star'></span>"+
+									"	</div>";
+							for(var j=0; j<data[key].length; j++){
+								var name = data[key][j]['CONTACTOR'];
+								var id = data[key][j]['ID'];
+								var fdesc = data[key][j]['FUNC_EASYDESC'];
+								if(name){
+									html +=	"	<div class='showBox' style='display:block'>"+
+											"		<div class='f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh' onclick='toDetail("+id+",&#39;"+userId+"&#39;)'><span class='f-fl'>"+name+"("+fdesc+")</span></div>"+
+											"	</div>";
+								}
+							}
+							html +=	"</div>";
+		           		}else{
+			           		html += "<div class='showBoxWrap'> "+
+									"	<div class='list arrow' onclick='showOrHide(this)'> "+
+									"		 <span class='f-fl' >"+key+"</span>"+
+									"	</div>";
+									
+							for(var j=0; j<data[key].length; j++){
+								var name = data[key][j]['CONTACTOR'];
+								var id = data[key][j]['ID'];
+								var fdesc = data[key][j]['FUNC_EASYDESC'];
+								if(name){
+									html +=	"	<div class='showBox' style='display:none'>"+
+											"		<div class='f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh' onclick='toDetail("+id+",&#39;"+userId+"&#39;)'><span class='f-fl'>"+name+"("+fdesc+")</span></div>"+
+											"	</div>";
+								}
+							}
+							html +=		"</div>";
+		           		} 
+		           }
+		           
+		           $(".contact_ct").html(html); 
+	           }
+	           
+	        },  
+	        error:function(){  
+	            alert('系统异常');  
+	        }  
+	    });
+	}
+    /**
+     * 交互
+     */
+    function showOrHide(index){
+      var displayPro = $(index).next().css("display");
+      if(displayPro=='none'){
+      	$(index).siblings().css("display","block");
+      }else if(displayPro=='block'){
+      	$(index).siblings().css("display","none");
+      }
+      //siblings()
+    }
+	function toDetail(id, userId){
+		window.location = "details.html?id="+id+"&userId="+userId;
+	}  
+	
+	function search(t){
+		var name = $(t).prev().val();
+		
+		$(".showBoxWrap .showBox").each(function(i,v){
+			var n = $(v).find("span").html();
+			if(n.indexOf(name)>-1){
+				$(v).find("span").parent().show();
+				$(v).find("span").parent().parent().show();
+				$(v).find("span").parent().siblings().hide();
+			}else{
+				$(v).find("span").parent().parent().hide();
+			}
+		});
+	}  
+		
+	
+	</script>
+</head>
+<body>
+<session>
+    <div class="search">
+        <div class="commonBox">
+           <input class="commonBoxAuto" type="text" placeholder="搜索" >
+           <span class="searchBtn commonBoxFixed" onclick="search(this)"></span>
+        </div>
+    </div>
+    <div class="contact_ct">
+	    <div class="showBoxWrap">
+	        <div class="list down" onclick="showOrHide(this)">
+	             <span class="f-fl">常用联系人</span><span class="star"></span>
+	        </div>
+	        <div class="showBox">
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">退货接收人</span></div>
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">物流投诉人</span></div>
+	        </div>
+	    </div>
+	    <div class="showBoxWrap">
+	        <div class="list arrow" onclick="showOrHide(this)">
+	            <span class="f-fl">品牌事业部</span><span class="star"></span>
+	        </div>
+	        <div class="showBox">
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">品牌事业部</span></div>
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">品牌事业部</span></div>
+	        </div>
+	    </div>
+	    <div class="showBoxWrap">
+	        <div class="list arrow" onclick="showOrHide(this)">
+	            <span class="f-fl">物流部</span><span class="star"></span>
+	        </div>
+	        <div class="showBox">
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">物流部</span></div>
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">物流部</span></div>
+	        </div>
+	    </div>
+	    <div class="showBoxWrap">
+	        <div class="list arrow" onclick="showOrHide(this)">
+	            <span class="f-fl">信息技术部</span><span class="star"></span>
+	        </div>
+	        <div class="showBox">
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">信息技术部</span></div>
+	            <div class="f-pl40 f-pt10 f-pb10 f-pr10 border-bottom fc-A1A1A1 f-oh"><span class="f-fl">信息技术部</span></div>
+	        </div>
+	    </div>
+    </div>
+</session>
+</body>
+</html>

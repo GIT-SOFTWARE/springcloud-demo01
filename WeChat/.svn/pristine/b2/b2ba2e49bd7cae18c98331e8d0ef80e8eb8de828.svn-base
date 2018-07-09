@@ -1,0 +1,37 @@
+
+.selectBox{background: #fff;padding: 4% 0;border-bottom:1px solid #dddddd; width: 100%;}
+.select{color:#333;appearance: none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;vertical-align: middle; text-align: right;margin-right: 15px; padding-right:20px;background: url(../images/down.png) right center no-repeat #fff; background-size: 12px;box-sizing: border-box;border:none; background-position: 100%;/*background-position: 100% 80%;*/ }
+.selectDate{background-image:url("../images/time.png") !important; background-size: 15px 15px !important; padding-right:0px; }
+.selectNoImg{background:none!important;padding-right:0px!important;}
+
+.search{ color: #1b579e; font-size: 1.4rem; background: #fff; border: 1px solid #dddddd; border-radius: 5px; text-align: center; padding: 10px; box-sizing: border-box; margin: 0 10px;}
+.searchToday{ color: #fff; font-size: 1.4rem; background: #1b579e; border-radius: 5px; text-align: center; padding: 10px; margin: 0 auto;width: 50%;}
+.searchContent{background: #ebebf2; padding:5px 10px;  box-sizing: border-box; transition: all 1s;}
+.searchInputBox{background:#fff; color: #494948;border: 1px solid #dddddd; border-radius: 6px;width:100%;box-sizing: border-box;}
+.searchTerminal{background: #ebebf2;}
+.searchInput{appearance: none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;text-align:left !important;background:#fff;box-sizing: border-box;border:none;border-right: 1px solid #dddddd;}
+
+/*单选按钮样式*/
+.checkboxOne{width: 15px; float: left; margin: 3px 10px 0 0; position: relative;}
+.checkboxOne label{cursor: pointer; position: absolute; width: 16px; height: 16px; top: 0px; left: 0; background: #fff; border:1px solid #ddd; border-radius: 50%;}
+.checkboxOne input{display: none;}
+.checkboxOne label:after{opacity: 0; content: '';  position: absolute; width: 10px; height: 10px;background: #66cc33; border-radius: 50%; top: 3px; left: 3px;}
+/*选中状态*/
+.checkboxOne input[type=radio]:checked + label:after{opacity: 1;}
+.checkboxOne .bd00A800{border: 1px solid #66cc33!important;background: #fff!important;}
+.isCheck{ border: none;}
+/*白底表格*/
+.table {width: 100%; line-height: 300%; border:0; border-collapse: collapse; margin-bottom: 30px; color: #333; font-size:1.4rem;}
+.table>thead>tr>th{color: #666;}
+.table>tbody>tr>td:nth-last-of-type(1) a{text-decoration: none; cursor: pointer; color: #247cd3;}
+.table>thead>tr>th{padding:15px 10px 5px!important;}
+.table>tbody>tr>td:nth-last-of-type(1) a:hover{text-decoration: none; cursor: pointer; color: #FE6700;text-decoration:underline; }
+.table>thead>tr>th,.table>tbody>tr>td {padding:15px 6px; word-break: break-all; line-height: 24px;line-height: 1.5rem; text-align: center; background: #fff;}
+.table>thead>tr>th { line-height: 150%;border-bottom: 1px solid #1b579e;}
+.table>tbody>tr>td{border-bottom: 1px solid #ddd;}
+.table>tbody>tr>td a{border: 1px solid #ddd;padding: 6px 24px;  border-radius: 3px; }
+/*灰白底表格 间隔*/
+.intervalTable {width: 100%; line-height: 300%; border:0; border-collapse: collapse; margin-bottom: 30px; color: #333; font-size:1.4rem;}
+.intervalTable>thead>tr>th{color: #fff; background-color: #1c92f4; padding:10px !important;}
+.intervalTable>thead>tr>th,.intervalTable>tbody>tr>td {padding:15px 6px; word-break: break-all; line-height: 24px;line-height: 1.5rem; text-align: center;}
+.intervalTable>tbody>tr:nth-of-type(even){background-color: #ebebf2;}

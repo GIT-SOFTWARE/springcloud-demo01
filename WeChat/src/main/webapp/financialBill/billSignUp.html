@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="合生元">
+    <meta name="description" content="合生元">
+    <meta name="author" content="WangDongping">
+    <title>票据签收</title>
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/angular-1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/angular-1.5.8/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/biostime/biostime.common.js"></script>
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/controller/billSignUp_controller.js?v2017082301"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+</head>
+<body ng-controller="billScanController" id="billScanController" ng-class="{'fg_fff':noticeShow}" onload="billInput.focus()">
+<section ng-show="isFirst" ng-cloak>
+    <div class="searchTerminal f-p10">
+        <div class="f-oh commonBox">
+            <div class="commonBoxAuto">
+                <div class="searchInputBox commonBox f-p5">
+                    <input class="searchInput commonBoxAuto f-pl5 f-fs14"  type="text" id="billInput" ng-model="billNum" ng-keypress="($event.which === 13)?addBill():0"/>
+                    <span  class="commonBoxFixed dbcenter01 f-pl10 f-mr5 fc_0072ce" ng-click="addBill()">确认</span>
+                </div>
+            </div>
+            <div class="commonBoxFixed f-ml5">
+                <div class="searchInputBox commonBox f-pt5 f-pb5 f-pl10 f-pr10">
+                    <button class="scanBtn" id="scanQRCode1"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 60px;">
+        <table class="table" style="margin-bottom: 0;">
+            <tbody>
+            <tr class="commonBox" ng-repeat="item in billList">
+                <td class="commonBoxFixed W10">[[$index+1]]</td>
+                <td class="commonBoxAuto" style="text-align: left !important;" ng-bind="item.bill"></td>
+                <td class="commonBoxFixed W10" ng-click="delItem($index)"><img src="images/del.png" alt width="14"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="f-pfx fg_fff f-tc">
+        <button class="cBtn f-mr10" ng-click="cancel()">取消</button>
+        <button class="sBtn" ng-click="submit()">提交</button>
+    </div>
+</section>
+<section ng-show="noticeShow" ng-cloak>
+    <p class="dbcenter f-mt30"><img src="images/icon_2.png" width="50" ng-show="isOk"><img src="images/icon_3.png" width="50" ng-show="!isOk"></p>
+    <p class="dbcenter f-fs16 f-mt15" ng-bind-html="desc"></p>
+    
+    <p class="f-tc"><button class="sBtn f-mt20" ng-click="makeSure()">确认</button></p>
+</section>
+</body>
+</html>

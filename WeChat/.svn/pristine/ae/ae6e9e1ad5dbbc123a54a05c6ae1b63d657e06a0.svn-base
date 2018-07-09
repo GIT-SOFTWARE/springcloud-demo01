@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="合生元">
+    <meta name="description" content="合生元">
+    <meta name="author" content="WangDongping">
+    <title>票据扫码</title>
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css?v=2017082101" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/angular-1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/biostime/biostime.common.js"></script>
+    <script type="text/javascript" src="http://img2.mama100.com/share_mkt_pc/js/lib/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/controller/billMenu_controller.js?v=20170827"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<body ng-controller="billMenuController" id="billMenuController" style="padding-bottom: 80px;">
+<section class="conbox">
+    <div>
+        <table class="nightTable">
+            <tr>
+                <td><a href="billScan.html"><div><img src="images/menu_1.png" ><div class="textTitle">票据寄送</div></div></a></td>
+                <td><a href="myBill.html"><div><img src="images/menu_2.png" ><div class="textTitle">我的票据</div></div></a></td>
+                <td><a href="billSignUp.html" ng-show="showMenu"><div><img src="images/menu_3.png" ><div class="textTitle">票据签收</div></div></a></td>
+            </tr>
+            <tr>
+                <td><a href="invoiceRegistration.html" ng-show="showMenu"><div><img src="images/menu_4.png" ><div class="textTitle">电子发票登记</div></div></a></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>
